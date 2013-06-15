@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/BlacksmithPress.Diabetes/BlacksmithPress.Diabetes.Core/obj/Debug
+/src/BlacksmithPress.Diabetes/BlacksmithPress.Diabetes.WinRT/bin/Debug
+/src/BlacksmithPress.Diabetes/BlacksmithPress.Diabetes.WinRT/obj/Debug
+/src/BlacksmithPress.Diabetes/packages
+*.suo
