@@ -1,9 +1,10 @@
-﻿using Microsoft.Practices.Prism.StoreApps;
+﻿using System.Collections.Generic;
+using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 
 namespace BlacksmithPress.Diabetes.WinRT.ViewModels
 {
-    public class MainPageViewModel : ViewModel
+    public class MainPageViewModel : ViewModel, IMainPageViewModel
     {
         private INavigationService _navigationService;
 
@@ -11,5 +12,13 @@ namespace BlacksmithPress.Diabetes.WinRT.ViewModels
         {
             _navigationService = navigationService;
         }
+
+        private IEnumerable<IDailyTileViewModel> _dailyTiles = default(IEnumerable<IDailyTileViewModel>);
+        public IEnumerable<IDailyTileViewModel> DailyTiles
+        {
+            get { return _dailyTiles; }
+            set { SetProperty(ref _dailyTiles, value); }
+        }
+
     }
 }

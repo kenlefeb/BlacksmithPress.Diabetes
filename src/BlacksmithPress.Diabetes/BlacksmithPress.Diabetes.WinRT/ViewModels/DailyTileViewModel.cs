@@ -7,7 +7,7 @@ using Windows.UI.Xaml;
 
 namespace BlacksmithPress.Diabetes.WinRT.ViewModels
 {
-    public class DailyTileViewModel : ViewModel
+    public class DailyTileViewModel : ViewModel, IDailyTileViewModel
     {
         private INavigationService _navigationService;
 

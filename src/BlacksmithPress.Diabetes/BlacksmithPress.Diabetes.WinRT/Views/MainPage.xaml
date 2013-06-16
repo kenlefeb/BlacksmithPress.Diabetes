@@ -7,7 +7,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="using:Microsoft.Practices.Prism.StoreApps"
+    xmlns:design="using:BlacksmithPress.Diabetes.WinRT.DesignTime"
     mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance Type=design:MainPageViewModel, IsDesignTimeCreatable=True}"
     prism:ViewModelLocator.AutoWireViewModel="True">
 
     <prism:VisualStateAwarePage.Resources>
@@ -41,109 +43,28 @@
         </Grid>
         
         <!-- Page Body -->
-        <GridView Grid.Row="1" Margin="120 0 120 0">
-            <GridViewItem Width="180" Height="180" BorderBrush="Azure" BorderThickness="1" Margin="10 10 10 10">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock>SUNDAY 09 JUNE 2013</TextBlock>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Breakfast: </TextBlock>
-                        <TextBlock TextAlignment="Right">90 g</TextBlock>
+        <GridView Grid.Row="1" Margin="120 0 120 0" ItemsSource="{Binding DailyTiles}">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" Width="160" Background="Blue">
+                        <TextBlock Text="{Binding Title}" TextAlignment="Center"/>
+                        <ListView ItemsSource="{Binding Meals}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Width="130" Height="24">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="50"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Grams}" TextAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Lunch: </TextBlock>
-                        <TextBlock TextAlignment="Right">67 g</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Supper: </TextBlock>
-                        <TextBlock TextAlignment="Right">45 g</TextBlock>
-                    </StackPanel>
-                </StackPanel>
-            </GridViewItem>
-            <GridViewItem Width="180" Height="180" BorderBrush="Azure" BorderThickness="1" Margin="10 10 10 10">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock>MONDAY 10 JUNE 2013</TextBlock>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Breakfast:</TextBlock>
-                        <TextBlock TextAlignment="Right">90 g</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Lunch:</TextBlock>
-                        <TextBlock TextAlignment="Right">67 g</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Supper:</TextBlock>
-                        <TextBlock TextAlignment="Right">45 g</TextBlock>
-                    </StackPanel>
-                </StackPanel>
-            </GridViewItem>
-            <GridViewItem Width="180" Height="180" BorderBrush="Azure" BorderThickness="1" Margin="10 10 10 10">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock>TUESDAY 11 JUNE 2013</TextBlock>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Breakfast:</TextBlock>
-                        <TextBlock TextAlignment="Right">90 g</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Lunch:</TextBlock>
-                        <TextBlock TextAlignment="Right">67 g</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Supper:</TextBlock>
-                        <TextBlock TextAlignment="Right">45 g</TextBlock>
-                    </StackPanel>
-                </StackPanel>
-            </GridViewItem>
-            <GridViewItem Width="180" Height="180" BorderBrush="Azure" BorderThickness="1" Margin="10 10 10 10">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock>WEDNESDAY 12 JUNE 2013</TextBlock>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Breakfast:</TextBlock>
-                        <TextBlock TextAlignment="Right">90 g</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Lunch:</TextBlock>
-                        <TextBlock TextAlignment="Right">67 g</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Supper:</TextBlock>
-                        <TextBlock TextAlignment="Right">45 g</TextBlock>
-                    </StackPanel>
-                </StackPanel>
-            </GridViewItem>
-            <GridViewItem Width="180" Height="180" BorderBrush="Azure" BorderThickness="1" Margin="10 10 10 10">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock>THURSDAY 13 JUNE 2013</TextBlock>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Breakfast:</TextBlock>
-                        <TextBlock TextAlignment="Right">90 g</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Lunch:</TextBlock>
-                        <TextBlock TextAlignment="Right">67 g</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Supper:</TextBlock>
-                        <TextBlock TextAlignment="Right">45 g</TextBlock>
-                    </StackPanel>
-                </StackPanel>
-            </GridViewItem>
-            <GridViewItem Width="180" Height="180" BorderBrush="Azure" BorderThickness="1" Margin="10 10 10 10">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock>FRIDAY 14 JUNE 2013</TextBlock>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Breakfast:</TextBlock>
-                        <TextBlock TextAlignment="Right">90 g</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Lunch:</TextBlock>
-                        <TextBlock TextAlignment="Right">67 g</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Supper:</TextBlock>
-                        <TextBlock TextAlignment="Right">45 g</TextBlock>
-                    </StackPanel>
-                </StackPanel>
-            </GridViewItem>
+                </DataTemplate>
+            </GridView.ItemTemplate>
         </GridView>
         
         
