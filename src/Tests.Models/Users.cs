@@ -1,11 +1,26 @@
+using Bogus;
+using Bogus.Extensions;
 using Diabetes.Models;
 using FluentAssertions;
+using System;
 using Xunit;
 
 namespace Tests.Models
 {
     public class Users
     {
+        private static Random _seed = new Random(2435407);
+        private Faker<Name> _faker;
+
+        public Users()
+        {
+            Randomizer.Seed = _seed;
+            _faker = new Faker<Name>()
+                .RuleFor(n => n.First, f => f.Name.FirstName())
+                .RuleFor(n => n.Middle, m => m.Name.FirstName().OrNull(m))
+                .RuleFor(n => n.Last, l => l.Name.LastName());
+        }
+
         [Fact]
         public void NewUser_InitializesNames()
         {
@@ -47,5 +62,63 @@ namespace Tests.Models
             // clean-up
         }
 
+        [Fact]
+        public void Equality_UsesAllThreeNames()
+        {
+            // arrange isolation
+
+            // arrange test
+            var name1 = _faker.Generate();
+            var name2 = new Name
+            {
+                First = name1.First,
+                Middle = name1.Middle,
+                Last = name1.Last
+            };
+
+            // act
+            var actual = (Equals(name1, name2));
+
+            // assert
+            actual.Should().BeTrue();
+
+            // clean-up
+        }
+
+        [Fact]
+        public void Inequality_UsesAllThreeNames()
+        {
+            // arrange isolation
+
+            // arrange test
+            var name1 = _faker.Generate();
+            var name2 = _faker.Generate();
+
+            // act
+            var actual = (name1 == name2);
+
+            // assert
+            actual.Should().BeFalse();
+
+            // clean-up
+        }
+
+        [Fact]
+        public void GetHashCode_UsesAllThreeNames()
+        {
+            // arrange isolation
+
+            // arrange test
+            var name = _faker.Generate();
+            var expected = name.ToString().GetHashCode();
+
+            // act
+            var actual = name.GetHashCode();
+
+            // assert
+            actual.Should().Be(expected);
+
+            // clean-up
+        }
     }
 }

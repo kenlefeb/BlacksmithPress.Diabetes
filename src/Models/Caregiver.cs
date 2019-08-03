@@ -1,6 +1,6 @@
-﻿namespace Diabetes.Models {
+﻿namespace Diabetes.Models
+{
     public class Caregiver : User
     {
-
     }
 }
